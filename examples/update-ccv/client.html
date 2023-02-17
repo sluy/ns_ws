@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Socket CCV listener example</title>
+</head>
+
+<body>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io();
+    socket.on('update-ccv', function (status) {
+      if (status) {
+        //To do when ccv was updated.
+      }
+    });
+  </script>
+</body>
+
+</html>
