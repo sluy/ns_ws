@@ -5,6 +5,6 @@ const { app, server } = require("./libs/server");
 app.use(secretKeyCheckMiddleware);
 app.get("/update-ccv", updateCcvHandler);
 
-server.listen(3000, () => {
-  console.log("listening on *:3000");
+server.listen(8080, () => {
+  console.log("listening on *:8080");
 });

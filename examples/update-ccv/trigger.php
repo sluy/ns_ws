@@ -1,7 +1,7 @@
 <?php
 //Define global websocket URL.
 if(!defined ('WEBSOCKET_URL')) {
-    define('WEBSOCKET_URL', 'http://localhost:3000');
+    define('WEBSOCKET_URL', 'http://localhost:8080');
 }
 //Define global websocket secret (used to avoid unauthorized emits.)
 if (!defined('WEBSOCKET_SECRET')) {
