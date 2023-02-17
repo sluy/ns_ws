@@ -5,11 +5,13 @@
 </head>
 
 <body>
-  <script src="/socket.io/socket.io.js"></script>
+  TestDrive
+  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
   <script>
-    var socket = io();
+    var socket = io("ws://neo.fo:8080");
     socket.on('update-ccv', function (status) {
       if (status) {
+        console.log(new Date(), 'Changed!.');
         //To do when ccv was updated.
       }
     });
