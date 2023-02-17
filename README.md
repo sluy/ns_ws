@@ -1,4 +1,4 @@
-# Servidor Websocket
+# Servicio Websocket
 
 ## Lenguajes/Tecnologías
 - Express 4
@@ -8,12 +8,12 @@
 - Instalar dependencias `npm install`
 - Copiar el archivo `config.example.js` a `config.example`
 
-## Iniciar servidor
+## Iniciar servicio
 ```
 node app.js
 ```
 ## Estructura general
-- `examples/*`: Diferentes ejemplos de integraciones tanto en el cliente (html) cómo servidor (php).
+- `examples/*`: Diferentes ejemplos de integraciones tanto en el cliente (html) cómo llamados al servicio (por ej, de php).
 - `libs/middlewares`: Middlewares http.
 - `libs/handlers`: Funciones ejecutadas por las rutas.
 - `tmp/logs`: Logs de las peticiones realizadas.

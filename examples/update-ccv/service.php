@@ -1,11 +1,11 @@
 <?php
 //Define global websocket URL.
-if(!defined ('WEBSOCKET_URL')) {
-    define('WEBSOCKET_URL', 'http://neo.fo:8080');
+if(!defined ('WEBSOCKET_SERVICE_URL')) {
+    define('WEBSOCKET_SERVICE_URL', 'http://neo.fo:8080');
 }
 //Define global websocket secret (used to avoid unauthorized emits.)
-if (!defined('WEBSOCKET_SECRET')) {
-    define('WEBSOCKET_SECRET', 'kphjsucr2ve2fzgo3631l1a2lxmz0a7k');
+if (!defined('WEBSOCKET_SERVICE_SECRET')) {
+    define('WEBSOCKET_SERVICE_SECRET', 'kphjsucr2ve2fzgo3631l1a2lxmz0a7k');
 }
 /**
  * Emit a socket action.
@@ -13,7 +13,7 @@ if (!defined('WEBSOCKET_SECRET')) {
  */
 function emitWS ($action) {
     try {
-        $path = WEBSOCKET_URL . '/' . $action . '?secret=' . WEBSOCKET_SECRET;
+        $path = WEBSOCKET_SERVICE_URL . '/' . $action . '?secret=' . WEBSOCKET_SERVICE_SECRET;
         $plain = file_get_contents($path);
         if (is_string($plain)) {
             $res = json_decode($plain, true);
