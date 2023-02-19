@@ -1,6 +1,5 @@
-const updateCCV = ({ io, saveLog }) => {
+const updateCCV = ({ io }) => {
   io.emit("update-ccv", true);
-  saveLog("update-ccv", true);
   return { status: true };
 };
 

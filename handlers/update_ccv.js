@@ -1,5 +1,5 @@
-const saveLog = require("../log");
-const { io } = require("../server");
+const saveLog = require("../libs/log");
+const { io } = require("../libs/server");
 const updateCcvHandler = (req, res) => {
   io.emit("update-ccv", true);
   saveLog("update-ccv", true);

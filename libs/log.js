@@ -1,5 +1,5 @@
 const fs = require("fs");
-const saveLog = (action, data) => {
+const log = (action, data) => {
   const date = new Date().toISOString().slice(0, 19).replace("T", " ");
   const path = __dirname + `/../tmp/logs/${action}`;
   const strData = data !== undefined ? " " + JSON.stringify(data) : "";
@@ -14,4 +14,4 @@ const saveLog = (action, data) => {
     fs.close(fd);
   }
 };
-module.exports = saveLog;
+module.exports = log;

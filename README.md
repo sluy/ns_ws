@@ -6,17 +6,29 @@
 
 ## Instalación y configuración
 - Instalar dependencias `npm install`
-- Copiar el archivo `config.example.js` a `config.example`
+- Copiar el archivo `.env.example` a `.env`
 
 ## Iniciar servicio
+
+### Desarrollo
 ```
 node app.js
 ```
+### Producción
+Instalar globalmente (si no está instalado previamente) el paquete `forever` :
+```
+npm install -g forever
+```
+Inicializar el servicio por medio de `forever`:
+```
+forever start app.js
+```
 ## Estructura general
-- `examples/*`: Diferentes ejemplos de integraciones tanto en el cliente (html) cómo llamados al servicio (por ej, de php).
-- `libs/middlewares`: Middlewares http.
-- `libs/handlers`: Funciones ejecutadas por las rutas.
-- `libs/actions`: Acciones por ejecutar en el sistema.
+- `/actions`: Acciones por ejecutar en el sistema.
+- `/gateways/*`: Pasarelas en distintos lenguajes de programación para ejecutar acciones en el servicio.
+- `/examples/*`: Diferentes ejemplos de integraciones tanto en el cliente (html) cómo llamados al servicio (por medio de las pasarelas).
+- `/middlewares`: Middlewares http.
+- `/handlers`: Funciones ejecutadas por las rutas.
 - `tmp/logs`: Logs de las peticiones realizadas.
 
 
@@ -24,29 +36,29 @@ node app.js
 
 ### Creación:
 
-Suponiendo que la acción sea `test`, crearemos el archivo `libs/actions/test.js` que devolverá por defecto la función a ejecutar.
+Suponiendo que la acción sea `test`, crearemos el archivo `actions/test.js` que devolverá por defecto la función a ejecutar.
 
 Esta función recibirá un objeto cómo único parámetro que tendrá por elementos:
 - `io` : Instancia de socket.io
 - `req`: Request de Express.
 - `res`: Response de Express.
-- `saveLog`: Función de ayuda para guardar logs.
+- `log`: Función de ayuda para guardar logs.
 
 Siguiendo el ejemplo, el contenido podría ser algo cómo:
 ```
-#file: libs/actions/test.js
-module.exports = ({ io, saveLog }) => {
+#file: actions/test.js
+module.exports = ({ io, log }) => {
   io.emit("test", true); // emitimos el evento 'test'
-  saveLog("test"); // guardamos el log tmp/logs/test
+  log("test"); // guardamos el log tmp/logs/test
   return { status: true }; // devolvemos true.
 };
 ```
 
 ### Vinculando al sistema
-Para vincular es simple, editamos el contenido del archivo `libs/actions/index.js` e incluímos nuestra nueva función.
+Para vincular es simple, editamos el contenido del archivo `actions/index.js` e incluímos nuestra nueva función.
 Vale destacar será siempre el nombre por el cual se accederá a la acción:
 ```
-#file: libs/actions/index.js
+#file: actions/index.js
 module.exports = {
   "test": require("./test"),
 };

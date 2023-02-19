@@ -1,10 +1,11 @@
-const actionHandler = require("./libs/handlers/action");
-const secretKeyCheckMiddleware = require("./libs/middlewares/secret_key_check");
+const dotenv = require("dotenv");
+dotenv.config();
+const actionHandler = require("./handlers/action");
+const authMiddleware = require("./middlewares/auth");
 const { app, server } = require("./libs/server");
+app.use(authMiddleware); //All requests must be validated with auth.
+app.get("/:action", actionHandler); //Action system handler.
 
-app.use(secretKeyCheckMiddleware);
-app.get("/:action", actionHandler);
-
-server.listen(8080, () => {
-  console.log("listening on *:8080");
+server.listen(process.env.PORT, () => {
+  console.log("Listening on *:" + process.env.PORT);
 });
