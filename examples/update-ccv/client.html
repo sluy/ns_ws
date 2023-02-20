@@ -9,9 +9,9 @@
   <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
   <script>
     var socket = io("ws://localhost:8080");
-    socket.on('update-ccv', function (status) {
-      if (status) {
-        console.log(new Date(), 'Changed!.');
+    socket.on('update-ccv', function (clienteId) {
+      if (clienteId) {
+        console.log(new Date(), 'Update (cliente_id=' + clienteId + ')' );
         //To do when ccv was updated.
       }
     });
