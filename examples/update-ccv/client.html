@@ -9,10 +9,12 @@
   <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
   <script>
     var socket = io("ws://localhost:8080");
-    socket.on('update-ccv', function (clienteId) {
-      if (clienteId) {
-        console.log(new Date(), 'Update (cliente_id=' + clienteId + ')' );
-        //To do when ccv was updated.
+    socket.on('update-ccv', function (clientId) {
+      //Enters here when update-ccv was called.
+       console.log(new Date(), 'Update triggered.');
+      //If you want to discrimine do simple if...:
+      if (clientId === 1) {
+        console.log(new Date(), 'client_id=' + clientId + '');
       }
     });
   </script>
